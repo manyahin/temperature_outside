@@ -1,0 +1,18 @@
+{
+  "name": "read_linux_socket",
+  "version": "1.0.0",
+  "description": "App read data from Arduino device and safe it in database",
+  "main": "read.js",
+  "dependencies": {
+    "serialport": "^1.7.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "arduino"
+  ],
+  "author": "Ilya Manyahin",
+  "license": "ISC"
+}
