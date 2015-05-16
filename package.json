@@ -4,6 +4,7 @@
   "description": "App read data from Arduino device and safe it in database",
   "main": "read.js",
   "dependencies": {
+    "mongo": "^0.1.0",
     "serialport": "^1.7.1"
   },
   "devDependencies": {},
