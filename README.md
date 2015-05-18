@@ -1,15 +1,15 @@
 # Analog to digital converter.
 
-Goal is receive a data from a temperature sensor conneted to Arduno board by analog input. And by serial port transfer a data to computer for future analysis and visualisation.
+The goal is receive a data from a temperature sensor conneted to Arduno board by analog input. And by serial port transfer a data to computer for future analysis and visualisation.
 
-# Used tehcnologies.
+## Used tehcnologies.
 
 Temperature sensor is TMP36.
 Arduino UNO.
 MongoDB to storage a data.
 Web and dygraphs to visualisation a data.
 
-# Calculating
+## Calculating
 
 One document safe one minute in seconds.  
 One full document equal to 905 bytes.  
@@ -19,4 +19,17 @@ And one month will be 39096000 bytes.
 That equal to 37.28Mb per Month.  
 And 447.36Mb per Year.  
 And 4.37Gb per 10 Years.   
+
+## Query to display average temperature per minute.
+```javascript
+db.temperatures.aggregate([
+	{ 
+		$project: {
+			_id: false,
+			day: { $dateToString: { format: "%Y-%m-%d  %H:%M", date: "$timestamp" } },
+			avgTotal: { $divide : [ "$total_samples" , "$num_samples" ] } 
+		} 
+	}
+])
+```
 
