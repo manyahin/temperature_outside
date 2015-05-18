@@ -18,10 +18,13 @@ MongoClient.connect("mongodb://localhost:27017/metrics", function(err, db) {
 });
 
 serialArduinoPort.on("open", function () {
-	console.log('Succesfulluy connectd to Arduino serial port');
+	console.log('Succesfulluy connected to Arduino serial port');
 
   serialArduinoPort.on('data', function(data) {
   	var temperature = data.trim();
+
+  	// Wait for database.
+  	if (collection === null) return;
 
     console.log('Received Temperature: ' + temperature);
 
