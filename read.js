@@ -21,7 +21,7 @@ serialArduinoPort.on("open", function () {
 	console.log('Succesfulluy connected to Arduino serial port');
 
   serialArduinoPort.on('data', function(data) {
-  	var temperature = data.trim();
+  	var temperature = parseFloat( data.trim() );
 
   	// Wait for database.
   	if (collection === null) return;
@@ -32,15 +32,16 @@ serialArduinoPort.on("open", function () {
     var second = new Date().getSeconds();
 
     // Generate rule for update.
-    var key_name_second = "seconds." + second; 
+    var key_name_second = "values." + second; 
     var updated_value = {};
-    updated_value[key_name_second] = parseFloat(temperature);
+    updated_value[key_name_second] = temperature;
 
     // Update/Insert new value to database.
     collection.update({
   		timestamp : getTimestamp()
   	}, {
-  		$set : updated_value
+  		$set : updated_value,
+  		$inc : { num_samples: 1, total_samples: temperature }
   	}, {
   		upsert : true
   	});
