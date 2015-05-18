@@ -32,9 +32,9 @@ serialArduinoPort.on("open", function () {
     var second = new Date().getSeconds();
 
     // Generate rule for update.
-    var key_name_second = "values." + second; 
+    var key_name_second = "seconds." + second; 
     var updated_value = {};
-    updated_value[key_name_second] = temperature;
+    updated_value[key_name_second] = parseFloat(temperature);
 
     // Update/Insert new value to database.
     collection.update({
@@ -61,5 +61,5 @@ function getTimestamp() {
 		currentDate.getMinutes()
 	);
 
-	return generatedDate.toISOString();
+	return generatedDate;
 }
