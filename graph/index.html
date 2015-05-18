@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Visualisation of temperature</title>
+	<script src="dygraph-combined-dev.js"></script>
+</head>
+<body>
+	<div id="graphdiv"></div>
+	<script type="text/javascript">
+	  g = new Dygraph(
+
+	    // containing div
+	    document.getElementById("graphdiv"),
+
+	    // CSV or path to a CSV file.
+	    "temperatures.csv"
+
+	  );
+	</script>
+</body>
+</html>
