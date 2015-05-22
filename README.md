@@ -1,4 +1,4 @@
-# Analog to digital converter.
+# Analog to digital temperature converter.
 
 The goal is receive a data from a temperature sensor conneted to Arduno board by analog input. And by serial port transfer a data to computer for future analysis and visualisation.
 
@@ -38,3 +38,4 @@ db.temperatures.aggregate([
 
 mongoexport -d metrics -c export -f day,avgTotal --type=csv --out=temperatres.csv
 ```
+
