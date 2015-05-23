@@ -2,6 +2,8 @@
 
 The goal is receive a data from a temperature sensor conneted to Arduno board by analog input. And by UART interface transfer a data to computer for future analysis and visualisation.
 
+![Graph Screenshot](https://raw.githubusercontent.com/manyahin/temperature_outside/master/graph/graph_vision.png)
+
 ## Used tehcnologies
 
 Temperature sensor is TMP36.
