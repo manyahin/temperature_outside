@@ -1,26 +1,25 @@
-# Analog to digital temperature converter.
+# Analog to digital temperature converter
 
-The goal is receive a data from a temperature sensor conneted to Arduno board by analog input. And by serial port transfer a data to computer for future analysis and visualisation.
+The goal is receive a data from a temperature sensor conneted to Arduno board by analog input. And by UART interface transfer a data to computer for future analysis and visualisation.
 
-## Used tehcnologies.
+## Used tehcnologies
 
 Temperature sensor is TMP36.
-Arduino UNO.
-MongoDB to storage a data.
-Web and dygraphs to visualisation a data.
+Board is Arduino UNO.
+MongoDB for storage the data.
+Dygraphs to visualisation the data.
 
 ## Calculating
 
-One document safe one minute in seconds.  
-One full document equal to 905 bytes.  
-Therefore one hour will be 54300 bytes.  
-Therefore one day will be 1303200 bytes.  
-And one month will be 39096000 bytes.  
-That equal to 37.28Mb per Month.  
-And 447.36Mb per Year.  
-And 4.37Gb per 10 Years.   
+One document contain one minute in seconds.
+One document equal 905 bytes (~1Kb).
+One hour is 60Kb.  
+One day is 1440Kb (~1.4Mb).  
+One month is 39096Kb.    
+One year is 447.36Mb.  
+10 years is 4.37Gb.   
 
-## Export average temperature per minute to CSV
+## Export average temperature per minute to CSV file from MongoDB.
 
 ```javascript
 db.temperatures.aggregate([
@@ -36,6 +35,14 @@ db.temperatures.aggregate([
 	}
 ])
 
-mongoexport -d metrics -c export -f day,avgTotal --type=csv --out=temperatres.csv
+mongoexport -d metrics -c export -f day,avgTotal --type=csv --out=temperatures.csv
 ```
+
+## Visualisation a data
+```
+cd graph
+npm install
+node server
+```
+Open (http://127.0.0.1:8080/)[http://127.0.0.1:8080/] in your browser.
 
