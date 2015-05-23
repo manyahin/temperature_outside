@@ -6,20 +6,20 @@ The goal is receive a data from a temperature sensor conneted to Arduno board by
 
 ## Used tehcnologies
 
-Temperature sensor is TMP36.
-Board is Arduino UNO.
-MongoDB for storage the data.
-Dygraphs to visualisation the data.
+* Temperature sensor is TMP36.
+* Board is Arduino UNO.
+* MongoDB for storage the data.
+* Dygraphs to visualisation the data.
 
 ## Calculating
 
-One document contain one minute in seconds.
-One document equal 905 bytes (~1Kb).
-One hour is 60Kb.  
-One day is 1440Kb (~1.4Mb).  
-One month is 39096Kb.    
-One year is 447.36Mb.  
-10 years is 4.37Gb.   
+* One document contain one minute in seconds.
+* One document equal 905 bytes (~1Kb).
+* One hour is 60Kb.  
+* One day is 1440Kb (~1.4Mb).  
+* One month is 39096Kb.    
+* One year is 447.36Mb.  
+* 10 years is 4.37Gb.   
 
 ## Export average temperature per minute to CSV file from MongoDB.
 
