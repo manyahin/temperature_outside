@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tempereature</title>
+  <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</head>
+<script>
+
+$(function(){
+  $.get('/last', displayGraph, 'json');
+
+  function prepareData(data) {
+    var arr = [];
+    data.result.forEach(function(el) {
+      arr.push({
+        x: new Date(el._id),
+        y: el.value
+      });
+    });
+    return arr;
+  }
+
+  function displayGraph(data) {
+    var chart = new CanvasJS.Chart("chart", {
+      title:{
+        text: "Temperature in room"              
+      },
+      zoomEnabled: true, 
+      data: [              
+        {
+          dataPoints: prepareData(data)      
+        }
+      ]
+    });
+    chart.render();
+  }
+}); 
+
+</script>
+<body>
+  <div class="wrapper">
+    <section class="temperature">
+      <div class="count"></div>
+      <div class="description"></div>
+    </section>
+    <section class="graph">
+      <div id="chart" style="height: 300px; width: 100%;"></div>
+      <div class="seasons">
+        <span>For whole time</span>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
+

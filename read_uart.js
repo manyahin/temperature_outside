@@ -1,7 +1,7 @@
 var serialport = require("serialport")
 var SerialPort = serialport.SerialPort;
 
-var serialArduinoPort = new SerialPort("/dev/cu.usbmodemfd121", {
+var serialArduinoPort = new SerialPort("/dev/ttyACM0", {
   baudrate: 9600,
   parser: serialport.parsers.readline("\n")
 });
@@ -21,7 +21,16 @@ serialArduinoPort.on("open", function () {
 	console.log('Succesfulluy connected to Arduino serial port');
 
   serialArduinoPort.on('data', function(data) {
-  	var temperature = parseFloat( data.trim() );
+  	var rcv = data.trim();
+	var start = rcv.indexOf('>');
+	var end = rcv.indexOf('<');
+
+	if (start != -1 && end != -1) 
+	{
+		var temperature = parseFloat(rcv.substr(start + 1, end - 1));
+	}
+
+	if (!temperature) return;
 
   	// Wait for database.
   	if (collection === null) return;
@@ -58,7 +67,7 @@ function getTimestamp() {
 		currentDate.getFullYear(), 
 		currentDate.getMonth(),
 		currentDate.getDate(),
-		currentDate.getHours() + 3, // Fix time zone.
+		currentDate.getHours() + 2, // Fix time zone.
 		currentDate.getMinutes()
 	);
 

@@ -5,6 +5,7 @@
   "main": "read.js",
   "dependencies": {
     "mongo": "^0.1.0",
+    "mongodb": "^2.1.4",
     "serialport": "^1.7.1"
   },
   "devDependencies": {},
